@@ -1,0 +1,7 @@
+[package]
+name = "tutorials"
+version = "0.1.0"
+authors = ["Avni Genç <avnignc@gmail.com>"]
+edition = "2018"
+
+[dependencies]
