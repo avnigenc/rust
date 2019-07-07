@@ -1,5 +1,8 @@
 use std::f64::consts; // std.f64.consts
 
+// local .rs dosyaları
+mod include_me;
+
 fn main() {
     // değişken default olarak immutable
     // mut keyword u ile mutable oluyor
@@ -24,6 +27,9 @@ fn main() {
     let abs_difference = (x.cos() - 1.0).abs();
     assert!(abs_difference < 1e-10);
 
+    let arr = [10, 11, 12, 13];
+    println!("{:?}", arr);
+
 }
 
 fn call_another_function() {
@@ -34,6 +40,7 @@ fn call_another_function() {
     println!("{}", res);
 
     mathematical();
+    call_function_from_another_file();
 }
 
 fn square(x: f64) -> f64 {
@@ -64,4 +71,17 @@ fn mathematical() {
     let x = pi/2.0;
     let cosine = x.cos();
     println!("{}", cosine);
+}
+
+fn call_function_from_another_file() {
+
+    include_me::array();
+
+    let arr = [10,20,30,40];
+    // look at that &
+    let res = include_me::sum(&arr);
+    println!("sum {}", res);
+
+    include_me::array_types();
+    include_me::slice();
 }
