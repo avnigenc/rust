@@ -84,4 +84,5 @@ fn call_function_from_another_file() {
 
     include_me::array_types();
     include_me::slice();
+    include_me::vectors();
 }

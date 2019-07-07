@@ -57,6 +57,32 @@ pub(crate) fn slice() {
     // eğer get(index) var ise döndür yoksa unwrap_or(& value) döndür
     // &
     let last = *slice.get(5).unwrap_or(&-1);
+    println!("last -> {:?}", last); // -1
+
+}
+
+/*
+ In systems languages, program memory comes in two kinds: the stack and the heap.
+ It is very fast to allocate data on the stack, but the stack is limited; typically of the order of megabytes.
+ The heap can be gigabytes, but allocating is relatively expensive, and such memory must be freed later.
+ When a vector is modified or created, it allocates from the heap and becomes the owner of that memory.
+ The slice borrows the memory from the vector. When the vector dies or drops, it lets the memory go.
+*/
+pub(crate) fn vectors() {
+    // mutable olmalı
+    let mut vector = Vec::new();
+    vector.push(10);
+    vector.push(20);
+    vector.push(30);
+
+    println!("vector {:?}", vector); // [10, 11, 12, 13]
+
+
+    let first = vector[0];  // will panic if out-of-range
+    let maybe_first = vector.get(0);
+
+    println!("first is {}", first); // first is 10
+    println!("maybe_first is {:?}", maybe_first); // maybe_first is Some(10)
 
 
 }
