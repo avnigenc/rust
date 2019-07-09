@@ -85,6 +85,99 @@ pub fn vectors() {
     println!("maybe_first is {:?}", maybe_first); // maybe_first is Some(10)
 }
 
+pub fn strings() {
+
+    // Create an empty and growable `String`
+    let mut string = String::new();
+
+    // Heap allocate a string
+    let alice = String::from("I like dogs");
+
+    // Allocate new memory and store the modified string there
+    let bob: String = alice.replace("dog", "cat");
+
+    println!("Alice says: {}", alice);
+    println!("Bob says: {}", bob);
+
+    let text = "hello dolly";  // the string slice
+    let s = text.to_string();  // it's now an allocated string
+
+    dump(text);
+    dump(&s);
+
+    if text.contains("e") {
+        println!("{} contains {}", text, "e");
+    }
+
+
+    let mut s = String::new();
+    s.push('H');
+    s.push_str("ello");
+    s += " World!"; // short for `push_str`
+    println!("{}", s); // Hello World!
+
+    s.pop();
+    println!("{}", s); // Hello World
+    assert_eq!(s, "Hello World");
+
+    let arr = array_to_str(&[10, 20, 30]);
+    let res = format!("hello {}", arr);
+    println!("{}", res);
+
+    assert_eq!(res, "hello [10,20,30]");
+
+    let text = "static";
+    let string = "dynamic".to_string();
+
+    let text_s = &text[1..];
+    let string_s = &string[2..4];
+    println!("slices {:?} {:?}", text_s, string_s); // slices "tatic" "na"
+
+    let pangram: &'static str = "the quick brown fox jumps over the lazy dog";
+    println!("Pangram: {}", pangram); // Pangram: the quick brown fox jumps over the lazy dog
+
+    let mut vec = vec![];
+    for word in pangram.split_whitespace().rev() { // rev() -> reverse
+        vec.push(word);
+    }
+    println!("{:?}", vec); // ["dog", "lazy", "the", "over", "jumps", "fox", "brown", "quick", "the"]
+
+    // Copy chars into a vector, sort and remove duplicates
+    let mut chars: Vec<char> = pangram.chars().collect();
+    chars.sort();
+    chars.dedup();
+    println!("{:?}", chars); // [' ', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+
+
+    // Create an empty and growable `String`
+    let mut string = String::new();
+    for c in chars {
+        // Insert a char at the end of string
+        string.push(c);
+        // Insert a string at the end of string
+        string.push_str(", ");
+    }
+    println!("{}", string); //  , a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z,
+
+    // The trimmed string is a slice to the original string, hence no new
+    // allocation is performed
+    let chars_to_trim: &[char] = &[' ', ','];
+    let trimmed_str: &str = string.trim_matches(chars_to_trim);
+    println!("Used characters: {}", trimmed_str); // Used characters: a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z
+
+    let text = "the red fox and the lazy dog";
+    let words: Vec<&str> = text.split_whitespace().collect();
+    println!("{:?}", words); // ["the", "red", "fox", "and", "the", "lazy", "dog"]
+
+    let mut words = Vec::new();
+    words.extend(text.split_whitespace());
+    println!("{:?}", words); // ["the", "red", "fox", "and", "the", "lazy", "dog"]
+
+    let stripped: String = text.chars()
+        .filter(|ch| ! ch.is_whitespace()).collect();
+    println!("{}", stripped); // theredfoxandthelazydog
+}
+
 pub fn iterator() {
     let mut iter = 0..3; // like range in python
     println!("iter -> {:?}", iter.next()); // Some(0)
@@ -121,6 +214,7 @@ pub fn iterator() {
     }
 }
 
+
 pub fn more_about_vectors() {
     let mut v1 = vec![10, 20, 30, 40];
     v1.pop();
@@ -144,7 +238,6 @@ pub fn more_about_vectors() {
     assert_eq!(v1, &[1, 2, 5, 10, 11, 40]);
 }
 
-
 pub fn array_types() {
     // only one type
     let ints = [1, 2, 3];
@@ -155,4 +248,37 @@ pub fn array_types() {
     println!("floats {:?}", floats);
     println!("strings {:?}", strings);
     println!("ints_ints {:?}", ints_ints);
+}
+
+pub fn dump(s: &str) {
+    println!("str '{}'", s);
+}
+
+// But, you cannot index strings!
+// This is because they use the One True Encoding, UTF-8, where a 'character' may be a number of bytes.
+pub fn multilingual() {
+    let multilingual = "Hi! ¡Hola! привет!";
+    for ch in multilingual.chars() {
+        print!("'{}' ", ch); // 'H' 'i' '!' ' ' '¡' 'H' 'o' 'l' 'a' '!' ' ' 'п' 'р' 'и' 'в' 'е' 'т' '!'
+    }
+    println!("");
+    println!("len {}", multilingual.len()); // len 25 (bytes)
+    println!("count {}", multilingual.chars().count()); // count 18
+
+    let maybe = multilingual.find('п');
+    if maybe.is_some() {
+        let hi = &multilingual[maybe.unwrap()..];
+        println!("Russian hi {}", hi);
+    }
+}
+
+fn array_to_str(arr: &[i32]) -> String {
+    let mut res = '['.to_string();
+    for v in arr {
+        res += &v.to_string();
+        res.push(',');
+    }
+    res.pop();
+    res.push(']');
+    res
 }

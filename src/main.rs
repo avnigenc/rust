@@ -87,4 +87,6 @@ fn call_function_from_another_file() {
     include_me::vectors();
     include_me::iterator();
     include_me::more_about_vectors();
+    include_me::strings();
+    include_me::multilingual();
 }
