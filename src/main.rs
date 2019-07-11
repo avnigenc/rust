@@ -4,6 +4,7 @@ use std::f64::consts; // std.f64.consts
 mod include_me;
 mod command_line;
 mod structs;
+mod lifetime;
 
 fn main() {
 
@@ -94,5 +95,6 @@ fn call_function_from_another_file() {
     // include_me::strings();
     // include_me::multilingual();
     // command_line::command_line();
-    structs::test_struct();
+    // structs::test_struct();
+    lifetime::test_lifetime();
 }
