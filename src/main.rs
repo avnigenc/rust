@@ -2,8 +2,11 @@ use std::f64::consts; // std.f64.consts
 
 // local .rs dosyaları
 mod include_me;
+mod command_line;
+mod structs;
 
 fn main() {
+
     // değişken default olarak immutable
     // mut keyword u ile mutable oluyor
     let mut sum = 0;
@@ -11,7 +14,7 @@ fn main() {
         sum += i;
     }
     println!("{}", sum);
-    call_another_function();
+
 
     let i = 10;
     let res1 = by_ref(&i);
@@ -29,17 +32,19 @@ fn main() {
 
     let arr = [10, 11, 12, 13];
     println!("{:?}", arr);
+    println!("################");
+    call_another_function();
 
 }
 
 fn call_another_function() {
     let res = square(2.0);
-    println!("{}", res);
+    // println!("{}", res); // 4
 
     let res = factorial(2);
-    println!("{}", res);
+    // println!("{}", res); // 4
 
-    mathematical();
+    // mathematical();
     call_function_from_another_file();
 }
 
@@ -75,18 +80,19 @@ fn mathematical() {
 
 fn call_function_from_another_file() {
 
-    include_me::array();
+    // include_me::array();
 
     let arr = [10,20,30,40];
-    // look at that &
-    let res = include_me::sum(&arr);
-    println!("sum {}", res);
+    let res = include_me::sum(&arr);     // look at that &
+    // println!("sum {}", res);
 
-    include_me::array_types();
-    include_me::slice();
-    include_me::vectors();
-    include_me::iterator();
-    include_me::more_about_vectors();
-    include_me::strings();
-    include_me::multilingual();
+    // include_me::array_types();
+    // include_me::slice();
+    // include_me::vectors();
+    // include_me::iterator();
+    // include_me::more_about_vectors();
+    // include_me::strings();
+    // include_me::multilingual();
+    // command_line::command_line();
+    structs::test_struct();
 }

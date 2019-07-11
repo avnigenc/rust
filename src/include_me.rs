@@ -270,6 +270,17 @@ pub fn multilingual() {
         let hi = &multilingual[maybe.unwrap()..];
         println!("Russian hi {}", hi);
     }
+
+
+    //
+    match multilingual.find('п') {
+        Some(idx) => {
+            let hi = &multilingual[idx..];
+            println!("Russian hi {}", hi);
+        }
+        None => println!("couldn't find the greeting, Товарищ")
+    }
+
 }
 
 fn array_to_str(arr: &[i32]) -> String {
@@ -281,4 +292,14 @@ fn array_to_str(arr: &[i32]) -> String {
     res.pop();
     res.push(']');
     res
+}
+
+fn add_mul(x: f64, y: f64) -> (f64, f64){
+    (x, y)
+}
+
+
+
+pub fn tuples() {
+
 }
