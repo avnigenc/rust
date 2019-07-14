@@ -6,35 +6,35 @@ mod command_line;
 mod structs;
 mod lifetime;
 mod dodo;
+mod enum_ex;
 
 fn main() {
 
     // değişken default olarak immutable
     // mut keyword u ile mutable oluyor
-    let mut sum = 0;
+    let mut _sum = 0;
     for i in 1..5 {
-        sum += i;
+        _sum += i;
     }
-    println!("{}", sum);
+    // println!("{}", sum);
 
 
     let i = 10;
-    let res1 = by_ref(&i);
-    let res2 = by_ref(&41);
-    println!("{} {}", res1, res2); // 11 42
+    let _res1 = by_ref(&i);
+    let _res2 = by_ref(&41);
+    // println!("{} {}", res1, res2); // 11 42
 
     let mut res = 0.0;
     modifies(&mut res);
-    println!("res is {}", res); // 1
+    // println!("res is {}", res); // 1
 
     // let bigint: i64 = 0; type after variable
     let x = 2.0 * consts::PI; // neden olum?
     let abs_difference = (x.cos() - 1.0).abs();
     assert!(abs_difference < 1e-10);
 
-    let arr = [10, 11, 12, 13];
-    println!("{:?}", arr);
-    println!("################");
+    let _arr = [10, 11, 12, 13];
+    // println!("{:?}", _arr);
     call_another_function();
 
 }
@@ -103,8 +103,8 @@ fn call_function_from_another_file() {
     // let s: String = String::from("test");
     // let a = &s;
     // println!("{}", a);
-    dodo::test();
-
+    // dodo::test();
+    enum_ex::test_enum();
 }
 #[allow(dead_code)]
 fn _degisken_kapsami() {

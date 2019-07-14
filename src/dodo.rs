@@ -42,9 +42,11 @@ fn unused_function() {
     println!("unused output");
 }
 
+#[allow(dead_code)]
 pub fn test() {
     let student1 = Student::new(1, "Avni", "Genç", "1.sınıf");
     println!("{:?}", student1);
     println!("No: {} - Ad: {}, Soyad: {}", student1.no, student1.name, student1.surname);
     println!("Info: {}", student1.get_student_information());
+
 }
