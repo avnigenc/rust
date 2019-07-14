@@ -19,7 +19,7 @@ fn inspect(event: WebEvent) {
     }
 }
 
-
+#[allow(dead_code)]
 pub fn test_enum() {
     let pressed = WebEvent::KeyPress('x');
     let pasted  = WebEvent::Paste("my text".to_owned());

@@ -7,6 +7,7 @@ mod structs;
 mod lifetime;
 mod dodo;
 mod enum_ex;
+mod external_lib;
 
 fn main() {
 
@@ -104,7 +105,8 @@ fn call_function_from_another_file() {
     // let a = &s;
     // println!("{}", a);
     // dodo::test();
-    enum_ex::test_enum();
+    // enum_ex::test_enum();
+    external_lib::try_external();
 }
 #[allow(dead_code)]
 fn _degisken_kapsami() {

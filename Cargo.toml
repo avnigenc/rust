@@ -5,3 +5,4 @@ authors = ["Avni Genç <avnignc@gmail.com>"]
 edition = "2018"
 
 [dependencies]
+qrcode = "0.8"
