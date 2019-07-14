@@ -8,6 +8,7 @@ mod lifetime;
 mod dodo;
 mod enum_ex;
 mod external_lib;
+mod more_complex;
 
 fn main() {
 
@@ -106,7 +107,8 @@ fn call_function_from_another_file() {
     // println!("{}", a);
     // dodo::test();
     // enum_ex::test_enum();
-    external_lib::try_external();
+    // external_lib::try_external();
+    more_complex::test();
 }
 #[allow(dead_code)]
 fn _degisken_kapsami() {
