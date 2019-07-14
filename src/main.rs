@@ -5,6 +5,7 @@ mod include_me;
 mod command_line;
 mod structs;
 mod lifetime;
+mod dodo;
 
 fn main() {
 
@@ -38,23 +39,24 @@ fn main() {
 
 }
 
+#[allow(dead_code)]
 fn call_another_function() {
-    let res = square(2.0);
+    let _res = square(2.0);
     // println!("{}", res); // 4
 
-    let res = factorial(2);
+    let _res = factorial(2);
     // println!("{}", res); // 4
 
     // mathematical();
     call_function_from_another_file();
 }
-
+#[allow(dead_code)]
 fn square(x: f64) -> f64 {
     // return keyword u kullanılmayabilir
     // return x * x
     x * x
 }
-
+#[allow(dead_code)]
 fn factorial(n: u64) -> u64 {
     if n == 0 {
         1
@@ -64,15 +66,16 @@ fn factorial(n: u64) -> u64 {
 }
 
 //  & ref yaratır
+#[allow(dead_code)]
 fn by_ref(x: &i32) -> i32{
     *x + 1
 }
-
+#[allow(dead_code)]
 fn modifies(x: &mut f64) {
     *x = 1.0;
 }
 
-fn mathematical() {
+fn _mathematical() {
     let pi: f64 = 3.1416;
     let x = pi/2.0;
     let cosine = x.cos();
@@ -84,7 +87,7 @@ fn call_function_from_another_file() {
     // include_me::array();
 
     let arr = [10,20,30,40];
-    let res = include_me::sum(&arr);     // look at that &
+    let _res = include_me::sum(&arr);     // look at that &
     // println!("sum {}", res);
 
     // include_me::array_types();
@@ -96,5 +99,18 @@ fn call_function_from_another_file() {
     // include_me::multilingual();
     // command_line::command_line();
     // structs::test_struct();
-    lifetime::test_lifetime();
+    // lifetime::test_lifetime();
+    // let s: String = String::from("test");
+    // let a = &s;
+    // println!("{}", a);
+    dodo::test();
+
+}
+#[allow(dead_code)]
+fn _degisken_kapsami() {
+
+    {   // s burada geçerli değil, henüz tanımlanmadı
+        let _s = "merhaba";   // s bu noktadan itibaren geçerli
+        // s ile bir şeyler yap
+    }   //  bu kapsam artık sona erdi ve s artık geçerli değil
 }

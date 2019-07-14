@@ -19,7 +19,8 @@ impl Person {
     fn full_name(&self) -> String { // ( &self ) as short for ( self: &Person )
         format!("{} {}", self.first_name, self.last_name)
     }
-
+    
+    #[allow(dead_code)]
     fn copy(&self) -> Self {
         Self::new(&self.first_name, &self.last_name)
     }
@@ -33,6 +34,7 @@ impl Person {
     }
 }
 
+#[allow(dead_code)]
 pub fn test_struct() {
     let p = Person {
         first_name: "Avni".to_string(),

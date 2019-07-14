@@ -1,5 +1,5 @@
 
-
+#[allow(dead_code)]
 pub fn command_line() {
     for arg in std::env::args() {
         println!("'{}'", arg);

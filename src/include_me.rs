@@ -1,4 +1,4 @@
-
+#[allow(dead_code)]
 pub fn array() {
     let array = [10, 11, 12, 13];
 
@@ -13,7 +13,7 @@ pub fn array() {
 
 
 }
-
+#[allow(dead_code)]
 pub fn sum(values: &[i32]) -> i32 {
     let mut res = 0;
     for i in 0..values.len() {
@@ -21,7 +21,7 @@ pub fn sum(values: &[i32]) -> i32 {
     }
     res
 }
-
+#[allow(dead_code)]
 pub fn slice() {
     let ints = [1, 2, 3, 4, 5];
     let slice1 = &ints[0..2];
@@ -68,6 +68,7 @@ pub fn slice() {
  When a vector is modified or created, it allocates from the heap and becomes the owner of that memory.
  The slice borrows the memory from the vector. When the vector dies or drops, it lets the memory go.
 */
+#[allow(dead_code)]
 pub fn vectors() {
     // mutable olmalı
     let mut vector = Vec::new();
@@ -84,11 +85,11 @@ pub fn vectors() {
     println!("first is {}", first); // first is 10
     println!("maybe_first is {:?}", maybe_first); // maybe_first is Some(10)
 }
-
+#[allow(dead_code)]
 pub fn strings() {
 
     // Create an empty and growable `String`
-    let mut string = String::new();
+    let mut _string = String::new();
 
     // Heap allocate a string
     let alice = String::from("I like dogs");
@@ -177,7 +178,7 @@ pub fn strings() {
         .filter(|ch| ! ch.is_whitespace()).collect();
     println!("{}", stripped); // theredfoxandthelazydog
 }
-
+#[allow(dead_code)]
 pub fn iterator() {
     let mut iter = 0..3; // like range in python
     println!("iter -> {:?}", iter.next()); // Some(0)
@@ -214,7 +215,7 @@ pub fn iterator() {
     }
 }
 
-
+#[allow(dead_code)]
 pub fn more_about_vectors() {
     let mut v1 = vec![10, 20, 30, 40];
     v1.pop();
@@ -237,7 +238,7 @@ pub fn more_about_vectors() {
     println!("after dedup -> {:?}", v1);
     assert_eq!(v1, &[1, 2, 5, 10, 11, 40]);
 }
-
+#[allow(dead_code)]
 pub fn array_types() {
     // only one type
     let ints = [1, 2, 3];
@@ -256,6 +257,7 @@ pub fn dump(s: &str) {
 
 // But, you cannot index strings!
 // This is because they use the One True Encoding, UTF-8, where a 'character' may be a number of bytes.
+#[allow(dead_code)]
 pub fn multilingual() {
     let multilingual = "Hi! ¡Hola! привет!";
     for ch in multilingual.chars() {
@@ -293,13 +295,13 @@ fn array_to_str(arr: &[i32]) -> String {
     res.push(']');
     res
 }
-
+#[allow(dead_code)]
 fn add_mul(x: f64, y: f64) -> (f64, f64){
     (x, y)
 }
 
 
-
+#[allow(dead_code)]
 pub fn tuples() {
 
 }

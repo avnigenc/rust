@@ -11,6 +11,7 @@ struct B <'b> {
     s: &'b str
 }
 
+#[allow(dead_code)]
 pub fn test_lifetime() {
     let a = A { s: "hello dammit" };
     println!("{:?}", a);
